@@ -15,13 +15,14 @@ namespace StorageBackup
                 throw new InsufficientMemoryException("There is no sufficient memory in SSD!");
 
             Used += size;
-            Thread.Sleep(Convert.ToInt32(Speed * 100));
+            Thread.Sleep(Convert.ToInt32(Calculate(StorageSizeConverter.ConvertKbToGb(size)).TotalSeconds) * 1000);
         }
 
         public override void DeviceInfo()
         {
             Console.WriteLine("----------- SSD Info ----------- ");
             Console.WriteLine(this);
+            this.SizeAndSpeedInfo();
         }
     }
 }

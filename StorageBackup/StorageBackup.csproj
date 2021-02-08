@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleScreen.cs" />
     <Compile Include="DVD.cs" />
     <Compile Include="Flash.cs" />
     <Compile Include="HardDisk.cs" />
     <Compile Include="HDD.cs" />
+    <Compile Include="IDataTransferTimeCalculate.cs" />
     <Compile Include="InsufficientMemoryException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

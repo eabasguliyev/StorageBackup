@@ -23,13 +23,14 @@ namespace StorageBackup
                 throw new InsufficientMemoryException("There is no sufficient memory in DVD Disk!");
 
             Used += size;
-            Thread.Sleep(Convert.ToInt32(Speed * 100));
+            Thread.Sleep(Convert.ToInt32(Calculate(StorageSizeConverter.ConvertKbToGb(size)).TotalSeconds) * 1000);
         }
         public override void DeviceInfo()
         {
             Console.WriteLine("----------- DVD Disk Info ----------- ");
             Console.WriteLine(this);
             Console.WriteLine("Double Side: {0}", (DoubleSide) ? "Yes" : "No");
+            this.SizeAndSpeedInfo();
         }    
     }
 }

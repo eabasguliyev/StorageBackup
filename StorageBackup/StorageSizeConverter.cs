@@ -16,5 +16,15 @@
         {
             return kb / StorageSizes.TbToKb;
         }
+
+        public static decimal ConvertGbToKb(decimal gb)
+        {
+            return gb * StorageSizes.GbToKb;
+        }
+
+        public static decimal ConvertGbToMb(decimal gb)
+        {
+            return gb * StorageSizes.GbToMB;
+        }
     }
 }

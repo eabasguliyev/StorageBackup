@@ -16,15 +16,32 @@ namespace StorageBackup
         public override string ToString()
         {
             return $@"Name: {Name}
-Model: {Model}
-Speed: {Speed}
-Capacity: {Capacity} KB
-Used: {Used} KB
-Free: {FreeMemory()} KB";
+Model: {Model}";
         }
 
         public abstract void Copy(decimal size);
 
         public abstract void DeviceInfo();
+
+        public void SizeAndSpeedInfo()
+        {
+            Console.WriteLine($"Speed: {StorageSizeConverter.ConvertKbToMb((decimal)Speed):F} MBpS");
+            Console.WriteLine($"Capacity: {StorageSizeConverter.ConvertKbToGb(Capacity):F} GB");
+            Console.WriteLine($"Used: {StorageSizeConverter.ConvertKbToGb(Used):F} GB");
+            Console.WriteLine($"Free: {StorageSizeConverter.ConvertKbToGb(FreeMemory()):F} GB");
+        }
+
+        protected TimeSpan Calculate(decimal dataSize)
+        {
+
+            var t = (double) (StorageSizeConverter.ConvertGbToMb(dataSize) / StorageSizeConverter.ConvertKbToMb((decimal)Speed));
+            return TimeSpan.FromSeconds(t);
+        }
+
+        public void ShowTransferTime(decimal dataSize)
+        {
+            var timespan = Calculate(dataSize);
+            Console.WriteLine($"Data will be transfer in {timespan.Days} days, {timespan.Hours} hours, {timespan.Minutes} minutes, {timespan.Seconds} seconds, {timespan.Milliseconds} milliseconds.");
+        }
     }
 }

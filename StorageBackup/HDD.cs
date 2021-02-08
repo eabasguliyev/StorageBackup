@@ -16,13 +16,14 @@ namespace StorageBackup
                 throw new InsufficientMemoryException("There is no sufficient memory in HDD!");
 
             Used += size;
-            Thread.Sleep(Convert.ToInt32(Speed * 100));
+            Thread.Sleep(Convert.ToInt32(Calculate(StorageSizeConverter.ConvertKbToGb(size)).TotalSeconds) * 1000);
         }
 
         public override void DeviceInfo()
         {
             Console.WriteLine("----------- HDD Info ----------- ");
             Console.WriteLine(this);
+            this.SizeAndSpeedInfo();
         }
     }
 }

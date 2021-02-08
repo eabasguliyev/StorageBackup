@@ -9,6 +9,7 @@
 
         public static decimal MbToKb => 1024;
         public static decimal GbToKb => 1024 * 1024;
+        public static decimal GbToMB => 1024;
         public static decimal TbToKb => 1024 * 1024 * 1024;
     }
 }
